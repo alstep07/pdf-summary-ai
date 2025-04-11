@@ -1,10 +1,13 @@
-import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+interface PageHeaderProps {
+  title: string;
+  description: string;
+}
 
-export function Header() {
+export function PageHeader({ title, description }: PageHeaderProps) {
   return (
-    <CardHeader>
-      <CardTitle>PDF Summary Generator</CardTitle>
-      <CardDescription>Upload a PDF file to generate a summary</CardDescription>
-    </CardHeader>
+    <div className="space-y-2 text-center">
+      <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+      <p className="text-muted-foreground">{description}</p>
+    </div>
   );
 } 

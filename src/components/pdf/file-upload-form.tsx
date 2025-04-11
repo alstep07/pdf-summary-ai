@@ -20,9 +20,9 @@ export function FileUploadForm() {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
-      'application/pdf': ['.pdf']
+      "application/pdf": [".pdf"],
     },
-    maxFiles: 1
+    maxFiles: 1,
   });
 
   const handleSubmit = async () => {
@@ -48,7 +48,9 @@ export function FileUploadForm() {
       console.log("PDF Data:", data);
     } catch (error) {
       console.error("Error:", error);
-      toast.error(error instanceof Error ? error.message : "Failed to parse PDF");
+      toast.error(
+        error instanceof Error ? error.message : "Failed to parse PDF",
+      );
     } finally {
       setIsLoading(false);
     }
@@ -59,20 +61,30 @@ export function FileUploadForm() {
       <div
         {...getRootProps()}
         className={`w-full border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
-          ${isDragActive ? 'border-primary bg-primary/10' : 'border-gray-300 hover:border-primary'}`}
+          ${
+            isDragActive
+              ? "border-primary bg-primary/10"
+              : "border-gray-300 hover:border-primary"
+          }`}
       >
         <input {...getInputProps()} />
         {file ? (
           <div>
             <p>Selected file: {file.name}</p>
-            <Button variant="outline" className="mt-4" onClick={() => setFile(null)}>
+            <Button
+              variant="outline"
+              className="mt-4"
+              onClick={() => setFile(null)}
+            >
               Remove
             </Button>
           </div>
         ) : (
           <div>
             <p>Drag and drop a PDF file here, or click to select</p>
-            <p className="text-sm text-gray-500 mt-2">Only PDF files are accepted</p>
+            <p className="text-sm text-gray-500 mt-2">
+              Only PDF files are accepted
+            </p>
           </div>
         )}
       </div>
@@ -85,6 +97,11 @@ export function FileUploadForm() {
           {isLoading ? "Processing..." : "Parse PDF"}
         </Button>
       )}
+      <p className="mt-16 text-sm mx-auto text-center text-muted-foreground max-w-sm">
+        Upload your PDF documents for AI-powered summarization. Our tool
+        extracts the key information so you can quickly digest lengthy
+        documents.
+      </p>
     </CardContent>
   );
-} 
+}
