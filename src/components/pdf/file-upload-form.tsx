@@ -79,7 +79,7 @@ export function FileUploadForm() {
               <p>Selected file: {file.name}</p>
               <Button
                 variant="outline"
-                className="mt-4"
+                className="mt-4 mx-auto"
                 onClick={() => setFile(null)}
               >
                 Upload Another File
