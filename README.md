@@ -1,36 +1,170 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PDF Summary UI
 
-## Getting Started
+A modern web application for summarizing PDF documents using AI technology.
 
-First, run the development server:
+## Project Description
+
+This application provides a user-friendly interface for uploading PDF documents and generating AI-powered summaries. Built with Next.js and TypeScript, it offers a seamless experience for document processing and summarization.
+
+### Live Demo
+
+Try the application live at: [https://pdf-summary-ai.vercel.app/](https://pdf-summary-ai.vercel.app/)
+
+### Key Features
+
+- PDF document upload and processing
+- AI-powered document summarization
+- Modern, responsive user interface
+- Secure environment variable handling
+- Docker containerization for easy deployment
+- Live demo available for testing
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- Yarn package manager
+- Docker and Docker Compose (for containerized deployment)
+
+### Local Development Setup
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd pdf-summary-ui
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Create a `.env.local` file in the root directory with the following variables:
 
-## Learn More
+```env
+OPENAI_API_KEY=your_openai_api_key
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the development server:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application will be available at `http://localhost:3000`
 
-## Deploy on Vercel
+## Docker Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Building and Running with Docker
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Build and start the containers:
+
+```bash
+docker-compose up --build
+```
+
+2. To run in detached mode (background):
+
+```bash
+docker-compose up -d --build
+```
+
+3. To stop the containers:
+
+```bash
+docker-compose down
+```
+
+4. To view logs:
+
+```bash
+docker-compose logs -f
+```
+
+### Docker Configuration
+
+- The application runs on port 3000
+- Environment variables are loaded from `.env.local`
+- Health checks are implemented to monitor application status
+- Resource limits are set for optimal performance
+
+## API Documentation
+
+### Endpoints
+
+#### POST /api/summarize
+
+Summarizes a PDF document.
+
+**Request:**
+
+- Method: POST
+- Content-Type: multipart/form-data
+- Body:
+  - `file`: PDF file to summarize
+
+**Response:**
+
+```json
+{
+  "summary": "string",
+  "status": "success"
+}
+```
+
+**Error Response:**
+
+```json
+{
+  "error": "string",
+  "status": "error"
+}
+```
+
+### Environment Variables
+
+| Variable            | Description                                      | Required |
+| ------------------- | ------------------------------------------------ | -------- |
+| OPENAI_API_KEY      | OpenAI API key for document summarization        | Yes      |
+| NODE_ENV            | Application environment (development/production) | No       |
+| NEXT_PUBLIC_API_URL | Public API URL                                   | No       |
+
+## Development
+
+### Available Scripts
+
+- `yarn dev`: Start development server
+- `yarn build`: Build production application
+- `yarn start`: Start production server
+- `yarn lint`: Run ESLint
+- `yarn test`: Run tests
+
+### Project Structure
+
+```
+pdf-summary-ui/
+├── src/
+│   ├── app/           # Next.js app directory
+│   ├── components/    # React components
+│   ├── lib/          # Utility functions
+│   └── types/        # TypeScript type definitions
+├── public/           # Static assets
+├── Dockerfile        # Docker configuration
+├── docker-compose.yml # Docker Compose configuration
+└── package.json      # Project dependencies
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
