@@ -15,9 +15,6 @@ Try the application live at: [https://pdf-summary-ai.vercel.app/](https://pdf-su
 - PDF document upload and processing
 - AI-powered document summarization
 - Modern, responsive user interface
-- Secure environment variable handling
-- Docker containerization for easy deployment
-- Live demo available for testing
 
 ## Setup Instructions
 
