@@ -24,5 +24,10 @@ export async function generateSummary(text: string): Promise<string> {
   });
 
   console.log("Completion:", JSON.stringify(completion, null, 2));
+
+  if (!completion.choices[0].message.content) {
+    throw new Error("No content returned from OpenAI");
+  }
+
   return completion.choices[0].message.content;
 }

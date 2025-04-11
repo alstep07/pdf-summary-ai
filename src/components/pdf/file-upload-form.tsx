@@ -7,9 +7,11 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import { usePDFStore } from "@/store/pdf-store";
+import { useHistoryStore } from "@/store/history-store";
 
 export function FileUploadForm() {
   const { file, isLoading, setFile, setLoading, setPDFData } = usePDFStore();
+  const { addToHistory } = useHistoryStore();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
@@ -47,6 +49,9 @@ export function FileUploadForm() {
       setPDFData({
         summary: data.summary,
       });
+
+      // Save to history
+      addToHistory(file.name, data.summary);
     } catch (error) {
       console.error("Error:", error);
       toast.error(
@@ -91,7 +96,7 @@ export function FileUploadForm() {
         </div>
         {file && (
           <Button
-            className="w-full mt-4"
+            className="mt-4 mx-auto"
             onClick={handleSubmit}
             disabled={isLoading}
           >
@@ -99,9 +104,7 @@ export function FileUploadForm() {
           </Button>
         )}
         <p className="mt-6 text-xs mx-auto text-center text-muted-foreground max-w-sm">
-          Upload your PDF documents for AI-powered summarization. Our tool
-          extracts the key information so you can quickly digest lengthy
-          documents.
+          Upload your PDF documents for AI-powered summarization
         </p>
       </CardContent>
     </div>
