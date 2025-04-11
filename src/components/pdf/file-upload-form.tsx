@@ -96,7 +96,7 @@ export function FileUploadForm() {
         </div>
         {file && (
           <Button
-            className="w-full mt-4"
+            className="mt-4 mx-auto"
             onClick={handleSubmit}
             disabled={isLoading}
           >
@@ -104,9 +104,7 @@ export function FileUploadForm() {
           </Button>
         )}
         <p className="mt-6 text-xs mx-auto text-center text-muted-foreground max-w-sm">
-          Upload your PDF documents for AI-powered summarization. Our tool
-          extracts the key information so you can quickly digest lengthy
-          documents.
+          Upload your PDF documents for AI-powered summarization
         </p>
       </CardContent>
     </div>

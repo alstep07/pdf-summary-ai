@@ -5,11 +5,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useHistoryStore } from "@/store/history-store";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { usePDFStore } from "@/store/pdf-store";
 
 export function HistoryList() {
   const { history, clearHistory } = useHistoryStore();
+  const { summary: currentSummary } = usePDFStore();
 
-  if (history.length === 0) return null;
+  const filteredHistory = history.filter(
+    (item) => item.summary !== currentSummary
+  );
+
+  if (filteredHistory.length === 0) return null;
 
   return (
     <Card>
@@ -25,7 +31,7 @@ export function HistoryList() {
         </Button>
       </CardHeader>
       <CardContent className="space-y-4">
-        {history.map((item, index) => (
+        {filteredHistory.map((item, index) => (
           <div
             key={index}
             className="border rounded-lg p-4 space-y-2"
