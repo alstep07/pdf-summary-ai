@@ -33,6 +33,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/next.config.js ./
 COPY --from=builder --chown=nextjs:nodejs /app/package.json ./
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 
 # Switch to non-root user
 USER nextjs
@@ -41,4 +42,4 @@ USER nextjs
 EXPOSE 3000
 
 # Start the application
-CMD ["yarn", "start"] 
+CMD ["node", "server.js"] 

@@ -10,8 +10,9 @@ services:
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_API_URL=http://localhost:3000
+    env_file:
+      - .env.local
     volumes:
-      - ./.env.local:/app/.env.local:ro
       - ./public:/app/public:ro
     restart: unless-stopped
     healthcheck:
