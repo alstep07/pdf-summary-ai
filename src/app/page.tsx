@@ -3,6 +3,7 @@ import { PageHeader } from "@/components/layout/header";
 import { FileUploadForm } from "@/components/pdf/file-upload-form";
 import { Footer } from "@/components/layout/footer";
 import { SiGithub } from "@icons-pack/react-simple-icons";
+import { PdfSummary } from "@/components/pdf/pdf-summary";
 
 export default function Home() {
   const footerLinks = [
@@ -25,6 +26,7 @@ export default function Home() {
         <Card>
           <FileUploadForm />
         </Card>
+        <PdfSummary />
       </main>
       <Footer links={footerLinks} className="row-start-3" />
     </div>
