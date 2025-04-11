@@ -13,11 +13,14 @@ export function FileUploadForm() {
   const { file, isLoading, setFile, setLoading, setPDFData } = usePDFStore();
   const { addToHistory } = useHistoryStore();
 
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    if (acceptedFiles.length > 0) {
-      setFile(acceptedFiles[0]);
-    }
-  }, [setFile]);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (acceptedFiles.length > 0) {
+        setFile(acceptedFiles[0]);
+      }
+    },
+    [setFile],
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -68,9 +71,10 @@ export function FileUploadForm() {
         <div
           {...getRootProps()}
           className={`w-full border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors
-            ${isDragActive
-              ? "border-primary bg-primary/10"
-              : "border-gray-300 hover:border-primary"
+            ${
+              isDragActive
+                ? "border-primary bg-primary/10"
+                : "border-gray-300 hover:border-primary"
             }`}
         >
           <input {...getInputProps()} />
@@ -79,7 +83,7 @@ export function FileUploadForm() {
               <p>Selected file: {file.name}</p>
               <Button
                 variant="outline"
-                className="mt-4 mx-auto"
+                className="mt-4"
                 onClick={() => setFile(null)}
               >
                 Upload Another File
@@ -95,13 +99,15 @@ export function FileUploadForm() {
           )}
         </div>
         {file && (
-          <Button
-            className="mt-4 mx-auto"
-            onClick={handleSubmit}
-            disabled={isLoading}
-          >
-            {isLoading ? "Processing..." : "Generate Summary"}
-          </Button>
+          <div className="w-full flex justify-center">
+            <Button
+              className="mt-4"
+              onClick={handleSubmit}
+              disabled={isLoading}
+            >
+              {isLoading ? "Processing..." : "Generate Summary"}
+            </Button>
+          </div>
         )}
         <p className="mt-6 text-xs mx-auto text-center text-muted-foreground max-w-sm">
           Upload your PDF documents for AI-powered summarization
