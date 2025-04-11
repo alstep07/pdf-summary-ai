@@ -18,7 +18,7 @@ export function Footer({
   className = ""
 }: FooterProps) {
   return (
-    <footer className={`flex flex-col items-center gap-4 py-6 ${className}`}>
+    <footer className={`w-full flex flex-col items-center gap-4 py-6 ${className}`}>
       {links.length > 0 && (
         <nav className="flex gap-6 flex-wrap items-center justify-center">
           {links.map((link, index) => (
