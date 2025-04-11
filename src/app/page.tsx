@@ -4,6 +4,7 @@ import { FileUploadForm } from "@/components/pdf/file-upload-form";
 import { Footer } from "@/components/layout/footer";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { PdfSummary } from "@/components/pdf/pdf-summary";
+import { HistoryList } from "@/components/pdf/history-list";
 
 export default function Home() {
   const footerLinks = [
@@ -27,6 +28,7 @@ export default function Home() {
           <FileUploadForm />
         </Card>
         <PdfSummary />
+        <HistoryList />
       </main>
       <Footer links={footerLinks} className="row-start-3" />
     </div>

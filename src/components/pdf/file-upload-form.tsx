@@ -7,9 +7,11 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import { usePDFStore } from "@/store/pdf-store";
+import { useHistoryStore } from "@/store/history-store";
 
 export function FileUploadForm() {
   const { file, isLoading, setFile, setLoading, setPDFData } = usePDFStore();
+  const { addToHistory } = useHistoryStore();
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles.length > 0) {
@@ -47,6 +49,9 @@ export function FileUploadForm() {
       setPDFData({
         summary: data.summary,
       });
+
+      // Save to history
+      addToHistory(file.name, data.summary);
     } catch (error) {
       console.error("Error:", error);
       toast.error(
